@@ -2,21 +2,21 @@ package com.nicholascoding.jpa.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-@Builder
+import java.util.List;
+
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "AUTHOR_TBL")
-public class Author {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(unique = true, updatable = false, length = 36)
-    private String id;
+public class Author extends BaseEntity {
     @Column(name="f_name", nullable = false)
     private String firstName;
     @Column(name="l_name", nullable = false)
@@ -24,4 +24,9 @@ public class Author {
     @Column(unique = true, nullable = false)
     private String email;
     private int age;
+
+    // mappedBy is reserved to the non-owner of the relationship
+    // in many-to-many relationship
+    @ManyToMany(mappedBy = "authors")
+    private List<Course> courses;
 }

@@ -1,0 +1,27 @@
+package com.nicholascoding.jpa.models;
+
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
+import java.util.List;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+@Entity
+public class Section extends BaseEntity {
+    @Column(nullable = false)
+    private String name;
+    @Column(name = "section_order")
+    private int sectionOrder;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
+
+    @OneToMany(mappedBy = "section")
+    private List<Lecture> lectures;
+}
