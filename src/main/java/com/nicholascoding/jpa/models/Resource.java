@@ -9,7 +9,8 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+// The subclass table will inherit all the attributes in the parent class with TABLE_PER_CLASS
 // @DiscrimininatorColumn(name = "resource_type") --> Only with SINGLE_TABLE
 public class Resource {
     @Id
