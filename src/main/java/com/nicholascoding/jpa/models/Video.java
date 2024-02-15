@@ -18,9 +18,9 @@ import org.hibernate.annotations.PolymorphismType;
 @SuperBuilder
 @Entity
 // Exclude Video's attribute from the query with @Polymorphism
-@Polymorphism(type = PolymorphismType.EXPLICIT)
-//@PrimaryKeyJoinColumn(name = "video_id")
-//@DiscriminatorValue("V")
+//@Polymorphism(type = PolymorphismType.EXPLICIT)
+@PrimaryKeyJoinColumn(name = "video_id")
+@DiscriminatorValue("V")
 public class Video extends Resource {
     private int length;
 }
