@@ -1,5 +1,6 @@
 package com.nicholascoding.jpa;
 
+import com.github.javafaker.Faker;
 import com.nicholascoding.jpa.models.Author;
 import com.nicholascoding.jpa.models.Video;
 import com.nicholascoding.jpa.repositories.AuthorRepository;
@@ -23,10 +24,18 @@ public class JpaApplication {
 	) {
 		// @Build usage
 		return args -> {
-//			var author = Author.builder().firstName("Nicholas").lastName("Yong").age(34).email("123@gmail.com").build();
-//			repository.save(author);
-			var video = Video.builder().name("abc").length(5).build();
-			videoRepository.save(video);
+			/* for (int i = 0; i < 50; i++) {
+				Faker faker = new Faker();
+				var author = Author.builder()
+						.firstName(faker.name().firstName())
+						.lastName(faker.name().firstName())
+						.age(faker.number().numberBetween(19, 60))
+						.email("contact" + i + "@gmail.com")
+						.build();
+				repository.save(author);
+			} */
+			/* var video = Video.builder().name("abc").length(5).build();
+			videoRepository.save(video); */
 		};
 	}
 
