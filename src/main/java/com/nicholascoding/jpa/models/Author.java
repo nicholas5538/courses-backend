@@ -16,6 +16,10 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "AUTHOR_TBL")
+@NamedQuery(
+        name = "Author.findByNamedQuery",
+        query = "select distinct a from Author a where Author.age >= :age"
+)
 public class Author extends BaseEntity {
     @Column(name="f_name", nullable = false)
     private String firstName;

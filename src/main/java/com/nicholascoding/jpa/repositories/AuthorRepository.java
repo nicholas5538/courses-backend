@@ -5,9 +5,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface AuthorRepository extends JpaRepository<Author, String> {
     List<Author> findAllByFirstName(String firstName);
@@ -16,6 +16,8 @@ public interface AuthorRepository extends JpaRepository<Author, String> {
     List<Author> findAllByFirstNameStartingWithIgnoreCase(String firstName);
     List<Author> findAllByFirstNameEndingWithIgnoreCase(String firstName);
     List<Author> findAllByFirstNameInIgnoreCase(List<String> firstNames);
+    // With named query
+    List<Author> findByNamedQuery(@Param("age") int age);
     int countAllByAge(int age);
     void deleteAllByAge(int age);
 

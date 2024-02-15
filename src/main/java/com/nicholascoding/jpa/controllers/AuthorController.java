@@ -46,6 +46,11 @@ public class AuthorController {
         return authorService.getCountByAge(age);
     }
 
+    @GetMapping("/authors")
+    public List<AuthorResponseDto> getNamedQuery(@RequestParam int age) {
+        return authorService.getAuthorsByNamedQuery(age);
+    }
+
     @DeleteMapping("/authors/{age}")
     public void deleteAuthorsByAge(@PathVariable("age") int age) {
         authorService.deleteAllByAge(age);

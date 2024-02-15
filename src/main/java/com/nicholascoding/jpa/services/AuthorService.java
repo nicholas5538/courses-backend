@@ -47,6 +47,11 @@ public class AuthorService {
         return authors.stream().map(mapper::AuthorResponseDto).collect(Collectors.toList());
     }
 
+    public List<AuthorResponseDto> getAuthorsByNamedQuery(int age) {
+        List<Author> authors = repository.findByNamedQuery(age);
+        return authors.stream().map(mapper::AuthorResponseDto).collect(Collectors.toList());
+    }
+
 
     public int getCountByAge(int age) {
         return repository.countAllByAge(age);
