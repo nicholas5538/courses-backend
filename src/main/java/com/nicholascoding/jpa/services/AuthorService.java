@@ -4,7 +4,9 @@ import com.nicholascoding.jpa.dto.AuthorResponseDto;
 import com.nicholascoding.jpa.mapper.AuthorMapper;
 import com.nicholascoding.jpa.models.Author;
 import com.nicholascoding.jpa.repositories.AuthorRepository;
+import com.nicholascoding.jpa.specification.AuthorSpecification;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +29,8 @@ public class AuthorService {
     }
 
     public List<AuthorResponseDto> getAuthorsByFirstNameContainingIgnoreCase(String firstName) {
-        List<Author> authors = repository.findAllByFirstNameContainingIgnoreCase(firstName);
+        Specification<Author> spec = Specification.where(AuthorSpecification.firstNameContains(firstName));
+        List<Author> authors = repository.findAll(spec);
         return authors.stream().map(mapper::AuthorResponseDto).collect(Collectors.toList());
     }
 

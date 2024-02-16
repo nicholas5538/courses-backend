@@ -24,7 +24,8 @@ public class JpaApplication {
 	) {
 		// @Build usage
 		return args -> {
-			/* for (int i = 0; i < 50; i++) {
+			// Uncomment this, when you want to create a fake db for Author table
+			for (int i = 0; i < 50; i++) {
 				Faker faker = new Faker();
 				var author = Author.builder()
 						.firstName(faker.name().firstName())
@@ -33,7 +34,7 @@ public class JpaApplication {
 						.email("contact" + i + "@gmail.com")
 						.build();
 				repository.save(author);
-			} */
+			}
 			/* var video = Video.builder().name("abc").length(5).build();
 			videoRepository.save(video); */
 		};
