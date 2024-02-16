@@ -1,4 +1,13 @@
-FROM ubuntu:latest
-LABEL authors="nick"
+FROM eclipse-temurin:latest
+LABEL authors="nicholas5538"
+LABEL version="1.0"
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+COPY .mvn .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:resolve
+
+COPY src ./src
+
+CMD ["./mnvw", "spring-boot:run"]
